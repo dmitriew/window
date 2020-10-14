@@ -1,10 +1,17 @@
 const forms = () => {
   const form = document.querySelectorAll('form'),
-      input = document.querySelectorAll('input');
+        inputs = document.querySelectorAll('input'),
+        phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+
+  phoneInputs.forEach(item => {
+    item.addEventListener('input', () => {
+        item.value = item.value.replace(/\D/,'');
+    });
+  })
 
   const message = {
       loading: 'Загрузка...',
-      success: 'Спасибо! Скоро мы с Вамисвязжемся',
+      success: 'Спасибо! Скоро мы с Вами связжемся',
       failure: 'Что-то пошло не так...'
   };
 
@@ -18,10 +25,10 @@ const forms = () => {
   };
 
   const clearInputs = () => {
-      inputs.forEach(item => {
-          item.value = '';
-      });
-  };
+    inputs.forEach(item => {
+        item.value = '';
+    });
+};
 
   form.forEach(item => {
     item.addEventListener('submit', (event) => {
